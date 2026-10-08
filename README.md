@@ -56,3 +56,16 @@ MIX_TARGET=nexus7 mix burn    # pick the "UMS disk 0" device
 ```
 
 After that, `mix upload` over USB networking works as usual.
+
+## Host-side notes
+
+* `mix upload` and `scp`/`sftp` fail with "subsystem request failed" when the
+  SSH client forwards locale variables (Ubuntu's `/etc/ssh/ssh_config` has
+  `SendEnv LANG LC_* COLORTERM NO_COLOR`). Erlang/OTP 29's SSH server then
+  rejects subsystem requests. Unset those variables for the upload, e.g. with
+  `upload.sh` in the parent workspace.
+* USB gadget Ethernet uses fixed MACs (`02:4e:37:00:00:02` on the tablet,
+  `02:4e:37:00:00:01` on the host side), so a NetworkManager profile can be
+  bound to `02:4e:37:00:00:01` with `ipv4.method auto`.
+* The tablet's USB link uses a 172.31.x.x/30 subnet. Docker networks in
+  172.31.0.0/16 shadow it.
