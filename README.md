@@ -55,7 +55,7 @@ MIX_TARGET=nexus7 mix firmware
 MIX_TARGET=nexus7 mix burn    # pick the "UMS disk 0" device
 ```
 
-After that, `mix upload` over USB networking works as usual.
+After that, upgrade over USB networking with `mix upload` (see the SSH note below).
 
 ## Host-side notes
 
