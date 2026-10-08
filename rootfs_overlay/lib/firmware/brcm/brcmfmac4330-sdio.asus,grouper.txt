@@ -1,0 +1,42 @@
+# SPDX-License-Identifier: GPL-2.0+
+# (C) Copyright 2024 The Android Open Source Project
+# NVRAM config file for the Azurewave NH665 BCM4330 WiFi/BT module
+# Found in the ASUS Transformer TF700T and ASUS/Google Nexus 7 (2012)
+aa2g=3
+ag0=255
+boardflags=0x00081200
+boardnum=22
+boardrev=0x11
+boardtype=0x0552
+bphyscale=17
+btc_params8=10000
+btc_params87=10000
+btc_params88=10000
+cckdigfilttype=20
+cckPwrIdxCorr=-15
+cckPwrOffset=5
+ccode=XY
+dacrate2g=160
+devid=0x4360
+manfid=0x2d0
+maxp2ga0=0x3e
+mcs2gpo0=0x2222
+mcs2gpo1=0x2222
+muxenab=0x10
+nocrc=1
+ofdm2gpo=0x0
+pacalidx2g=45
+prodid=0x0552
+regrev=4
+rfreg033_cck=0x1f
+rfreg033=0x19
+rssisav2g=0x7
+rssismc2g=0x3
+rssismf2g=0xa
+sromrev=3
+swctrlmap_2g=0x44844484,0x4a8a4282,0x42824282,0x818a82,0x1ff
+txalpfbyp2g=1
+txgaintbl=1
+vendid=0x14e4
+wl0id=0x431b
+xtalfreq=37400
