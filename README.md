@@ -17,7 +17,7 @@ USB networking and A/B firmware updates.
 | Linux kernel         | 7.0.1 from the [libre-tegra](https://codeberg.org/libre-tegra/linux) (grate) tree, as packaged by postmarketOS |
 | IEx terminal         | Tablet screen (`tty1`)                                        |
 | Networking           | USB gadget Ethernet (`usb0`, CDC-ECM/RNDIS)                   |
-| Wi-Fi                | BCM4330 (firmware included, **untested**)                     |
+| Wi-Fi / Bluetooth    | BCM4330 (driver and firmware load; connecting is untested)    |
 | Bootloader           | Mainline U-Boot (`grouper_defconfig`) in the eMMC boot partitions |
 | Firmware updates     | A/B, via fwup over SSH                                        |
 | Erlang/OTP           | 29                                                            |
@@ -283,8 +283,23 @@ scripts/upload.sh _build/nexus7_dev/nerves/images/my_app.fw nerves.local
 * **Unexpected resets sometimes land in APX mode** instead of U-Boot
   (black screen, `0955:7330` on USB). Hold Power to turn the tablet off, then
   power on again. Normal reboots aren't affected. The cause is unknown.
-* Wi-Fi, Bluetooth, the touchscreen, audio and the GPU are untested or
-  unconfigured.
+* See the hardware support table below for untested or unsupported hardware.
+
+## Hardware support
+
+| Hardware                         | Status                                              |
+| -------------------------------- | --------------------------------------------------- |
+| Display (800x1280), backlight    | Works (framebuffer console)                         |
+| Touchscreen, Power/Volume keys   | Input devices present (`/dev/input/event*`)         |
+| CPU frequency scaling            | Works (51 MHz – 1.3 GHz, `ondemand`)                |
+| Wi-Fi (BCM4330)                  | `wlan0` comes up. Connecting is untested; add `wlan0` to your VintageNet config |
+| Bluetooth (BCM4330)              | `hci0` comes up, firmware loads. Otherwise untested |
+| Audio (ALC5642)                  | Sound card present. Playback untested               |
+| Sensors (accel/gyro, magnetometer, light) | Present as IIO devices. Untested           |
+| Battery gauge and charger        | Present as power supplies. A PC USB port may not supply enough current to charge while running |
+| 3D GPU                           | Not supported (no Mesa driver for Tegra 3)          |
+| Camera, GPS, 3G modem            | Not supported (missing upstream)                    |
+| USB host/OTG                     | Not supported (USB is peripheral-only in the device tree) |
 
 ## Host-side notes
 

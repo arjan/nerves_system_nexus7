@@ -10,4 +10,7 @@ Initial release.
   partition, which mainline U-Boot's bootstd reads
 * USB gadget Ethernet (CDC-ECM/RNDIS) with fixed MAC addresses
 * F2FS application partition, formatted without discard on first boot
-* BCM4330 Wi-Fi/Bluetooth firmware included (Wi-Fi untested)
+* Kernel modules stored uncompressed, so `modprobe` and module autoloading work
+* Touch/buttons (evdev), the Wi-Fi power sequence (reset-gpio) and Tegra
+  cpufreq built into the kernel
+* BCM4330 Wi-Fi/Bluetooth firmware included (drivers load; connecting untested)
