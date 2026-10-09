@@ -3,11 +3,9 @@ version = 1
 [[annotations]]
 path = [
  ".formatter.exs",
- ".github/CODEOWNERS",
  ".gitignore",
  "CHANGELOG.md",
  "nerves_defconfig",
- "NOTICE",
  "REUSE.toml",
  "mix.exs",
  "mix.lock",
@@ -19,22 +17,16 @@ SPDX-License-Identifier = "CC0-1.0"
 
 [[annotations]]
 path = [
- "docs/kernel.md",
- "README.md",
- "uboot/README.md"
+ "README.md"
 ]
 precedence = "aggregate"
-SPDX-FileCopyrightText = "2016 Frank Hunleth"
+SPDX-FileCopyrightText = ["2016 Frank Hunleth", "2026 Arjan Scherpenisse"]
 SPDX-License-Identifier = "CC-BY-4.0"
 
 # Buildroot derived or related files
-# NOTE: packages here proactively have copyright assigned to the Buildroot
-# developers to avoid worrying up copyright assignment when upstreaming.
 [[annotations]]
 path = [
  "Config.in",
- "package/**",
- "external.mk",
  "post-build.sh",
  "post-createfs.sh"
 ]
@@ -45,25 +37,16 @@ SPDX-License-Identifier = "GPL-2.0-or-later"
 # Linux kernel derived or related files
 [[annotations]]
 path = [
- "linux/*",
- "rootfs_overlay/usr/bin/config-pin"
+ "linux/*"
 ]
 precedence = "override"
 SPDX-FileCopyrightText = "Various"
 SPDX-License-Identifier = "GPL-2.0-only"
 
-# U-Boot derived or related files
+# Fwup and boot config files
 [[annotations]]
 path = [
- "uboot/*"
-]
-precedence = "aggregate"
-SPDX-FileCopyrightText = "2000-2013 Wolfgang Denk, DENX Software Engineering, wd@denx.de"
-SPDX-License-Identifier = "GPL-2.0-or-later"
-
-# Fwup config files
-[[annotations]]
-path = [
+ "board/*",
  "fwup-ops.conf",
  "fwup.conf",
  "fwup_include/*"
@@ -79,28 +62,52 @@ path = [
  "rootfs_overlay/etc/boardid.config",
  "rootfs_overlay/etc/erlinit.config",
  "rootfs_overlay/etc/fw_env.config",
- "rootfs_overlay/etc/modprobe.d/wl18xx.conf"
+ "rootfs_overlay/mnt/boot/.empty"
 ]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "None"
 SPDX-License-Identifier = "CC0-1.0"
 
-# https://github.com/adafruit/Fritzing-Library
+# Firmware from https://codeberg.org/libre-tegra/firmware
+# (commit 00988ea994efa39550cc19f3b225874a32f1c3e0); see its WHENCE file.
 [[annotations]]
 path = [
- "assets/images/beaglebone-black.png"
+ "rootfs_overlay/lib/firmware/brcm/brcmfmac4330-sdio.bin",
+ "rootfs_overlay/lib/firmware/LICENCE.broadcom_bcm43xx"
 ]
-precedence = "aggregate"
-SPDX-FileCopyrightText = "Adafruit"
-SPDX-License-Identifier = "CC-BY-SA-3.0"
+precedence = "override"
+SPDX-FileCopyrightText = "Broadcom Corporation"
+SPDX-License-Identifier = "LicenseRef-Broadcom-BCM43xx"
 
-# TI Bluetooth files
 [[annotations]]
 path = [
- "rootfs_overlay/lib/firmware/ti-connectivity/*",
+ "rootfs_overlay/lib/firmware/brcm/BCM4330B1.asus,grouper.hcd",
+ "rootfs_overlay/lib/firmware/LICENCE.APACHE-2.0"
+]
+precedence = "override"
+SPDX-FileCopyrightText = "Broadcom Corporation; provenance in WHENCE of https://codeberg.org/libre-tegra/firmware"
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = [
+ "rootfs_overlay/lib/firmware/brcm/brcmfmac4330-sdio.asus,grouper.txt"
+]
+precedence = "override"
+SPDX-FileCopyrightText = "Various; provenance in WHENCE of https://codeberg.org/libre-tegra/firmware"
+SPDX-License-Identifier = "GPL-2.0-only"
+
+[[annotations]]
+path = [
+ "assets/nexus7.jpeg"
 ]
 precedence = "aggregate"
-SPDX-FileCopyrightText = "2008 – 2013 Texas Instruments Incorporated"
-SPDX-License-Identifier = "LicenseRef-TI-Release"
+SPDX-FileCopyrightText = "2026 Arjan Scherpenisse"
+SPDX-License-Identifier = "CC-BY-4.0"
 
-
+[[annotations]]
+path = [
+ "scripts/*"
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Arjan Scherpenisse"
+SPDX-License-Identifier = "CC0-1.0"

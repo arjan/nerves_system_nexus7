@@ -2,6 +2,7 @@ defmodule NervesSystemNexus7.MixProject do
   use Mix.Project
 
   @app :nerves_system_nexus7
+  @source_url "https://github.com/arjan/nerves_system_nexus7"
   @version Path.join(__DIR__, "VERSION")
            |> File.read!()
            |> String.trim()
@@ -16,8 +17,13 @@ defmodule NervesSystemNexus7.MixProject do
       description: description(),
       package: package(),
       deps: deps(),
+      docs: docs(),
       aliases: [loadconfig: [&bootstrap/1]]
     ]
+  end
+
+  def cli do
+    [preferred_envs: %{docs: :docs, "hex.build": :docs, "hex.publish": :docs}]
   end
 
   def application do
@@ -56,7 +62,8 @@ defmodule NervesSystemNexus7.MixProject do
     [
       {:nerves, "~> 1.11 or ~> 2.0 or ~> 2.0.0-dev", runtime: false},
       {:nerves_system_br, "1.34.4", runtime: false},
-      {:nerves_toolchain_armv7_nerves_linux_gnueabihf, "~> 15.3.0", runtime: false}
+      {:nerves_toolchain_armv7_nerves_linux_gnueabihf, "~> 15.3.0", runtime: false},
+      {:ex_doc, "~> 0.22", only: :docs, runtime: false}
     ]
   end
 
@@ -66,10 +73,24 @@ defmodule NervesSystemNexus7.MixProject do
     """
   end
 
+  defp docs do
+    [
+      extras: ["README.md", "CHANGELOG.md"],
+      main: "readme",
+      assets: %{"assets" => "./assets"},
+      source_ref: "v#{@version}",
+      source_url: @source_url,
+      skip_undefined_reference_warnings_on: ["CHANGELOG.md"]
+    ]
+  end
+
   defp package do
     [
       files: package_files(),
-      licenses: ["GPL-2.0-only", "GPL-2.0-or-later"]
+      # The Wi-Fi firmware blobs are also covered by Apache-2.0 and a Broadcom
+      # redistribution licence; see REUSE.toml and LICENSES/.
+      licenses: ["GPL-2.0-only", "GPL-2.0-or-later", "Apache-2.0"],
+      links: %{"GitHub" => @source_url}
     ]
   end
 
@@ -79,7 +100,9 @@ defmodule NervesSystemNexus7.MixProject do
       "fwup_include",
       "linux",
       "rootfs_overlay",
+      "scripts",
       "busybox.fragment",
+      "CHANGELOG.md",
       "fwup-ops.conf",
       "fwup.conf",
       "LICENSES/*",

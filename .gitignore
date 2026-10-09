@@ -1,5 +1,8 @@
 /_build
 /deps
 /.nerves
+/doc
 *.fw
 *.img
+*.log
+*.ez
