@@ -292,7 +292,7 @@ scripts/upload.sh _build/nexus7_dev/nerves/images/my_app.fw nerves.local
 | Display (800x1280), backlight    | Works (framebuffer console)                         |
 | Touchscreen, Power/Volume keys   | Input devices present (`/dev/input/event*`)         |
 | CPU frequency scaling            | Works (51 MHz – 1.3 GHz, `ondemand`)                |
-| Wi-Fi (BCM4330, 2.4 GHz)         | WPA2 + DHCP work, about 7 Mbit/s download. Inbound connections from other LAN hosts were unreliable in one test network (cause unknown) |
+| Wi-Fi (BCM4330, 2.4 GHz)         | Works: WPA2, DHCP, inbound and outbound, about 7 Mbit/s download. The firmware's built-in WPA supplicant is disabled (`/etc/modprobe.d/brcmfmac.conf`) |
 | Bluetooth (BCM4330)              | `hci0` comes up, firmware loads. Otherwise untested |
 | Audio (ALC5642)                  | Sound card present. Playback untested               |
 | Sensors (accel/gyro, magnetometer, light) | Present as IIO devices. Untested           |
