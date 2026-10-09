@@ -13,4 +13,4 @@ Initial release.
 * Kernel modules stored uncompressed, so `modprobe` and module autoloading work
 * Touch/buttons (evdev), the Wi-Fi power sequence (reset-gpio) and Tegra
   cpufreq built into the kernel
-* BCM4330 Wi-Fi/Bluetooth firmware included (drivers load; connecting untested)
+* BCM4330 Wi-Fi (tested: WPA2, DHCP, internet) and Bluetooth firmware included
