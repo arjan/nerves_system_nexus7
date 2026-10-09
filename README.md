@@ -293,13 +293,30 @@ scripts/upload.sh _build/nexus7_dev/nerves/images/my_app.fw nerves.local
 | Touchscreen, Power/Volume keys   | Input devices present (`/dev/input/event*`)         |
 | CPU frequency scaling            | Works (51 MHz – 1.3 GHz, `ondemand`)                |
 | Wi-Fi (BCM4330, 2.4 GHz)         | Works: WPA2, DHCP, inbound and outbound, about 7 Mbit/s download. The firmware's built-in WPA supplicant is disabled (`/etc/modprobe.d/brcmfmac.conf`) |
-| Bluetooth (BCM4330)              | `hci0` comes up, firmware loads. Otherwise untested |
-| Audio (ALC5642)                  | Sound card present. Playback untested               |
+| Bluetooth (BCM4330)              | Works: `hci0` up, classic inquiry scan finds devices. BlueZ is included; start `dbus-daemon` and `bluetoothd` yourself to use it |
+| Audio (ALC5642), stereo speakers | Works after enabling the speaker route (see below). alsa-utils is included |
 | Sensors (accel/gyro, magnetometer, light) | Present as IIO devices. Untested           |
 | Battery gauge and charger        | Present as power supplies. A PC USB port may not supply enough current to charge while running |
 | 3D GPU                           | Not supported (no Mesa driver for Tegra 3)          |
 | Camera, GPS, 3G modem            | Not supported (missing upstream)                    |
 | USB host/OTG                     | Not supported (USB is peripheral-only in the device tree) |
+
+## Audio
+
+The RT5640 codec starts with its speaker route switched off, and no
+mixer state is restored at boot. Enable it from your application, for example
+with `System.cmd/2`:
+
+```sh
+for c in "DAC MIXL INF1" "DAC MIXR INF1" "Stereo DAC MIXL DAC L1" \
+         "Stereo DAC MIXR DAC R1" "SPK MIXL DAC L1" "SPK MIXR DAC R1" \
+         "SPOL MIX SPKVOL L" "SPOR MIX SPKVOL R" "Speaker Channel" \
+         "Speaker L" "Speaker R" "Int Spk" Speakers; do
+  amixer -q -c 0 sset "$c" on
+done
+amixer -q -c 0 sset Speaker 20      # 0-39; 31 = 0 dB
+speaker-test -D plughw:0,0 -c 2 -t sine -f 440 -l 1
+```
 
 ## Host-side notes
 

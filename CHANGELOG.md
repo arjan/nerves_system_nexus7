@@ -13,6 +13,8 @@ Initial release.
 * Kernel modules stored uncompressed, so `modprobe` and module autoloading work
 * Touch/buttons (evdev), the Wi-Fi power sequence (reset-gpio) and Tegra
   cpufreq built into the kernel
+* alsa-utils (amixer, aplay, speaker-test) and BlueZ 5 with D-Bus included;
+  speaker playback and Bluetooth scanning tested
 * BCM4330 Wi-Fi (tested: WPA2, DHCP, inbound and outbound) and Bluetooth
   firmware included. The in-firmware WPA supplicant (FWSUP) is disabled,
   because its "connected" event never reaches the host with this firmware.
